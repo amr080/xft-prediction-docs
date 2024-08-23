@@ -16,9 +16,9 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <meta
             name="description"
-            content="Polymarket Developer Documentation"
+            content="XFT Developer Documentation"
         >
-    <title>Polymarket Documentation</title>
+    <title>XFT Documentation</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -743,28 +743,28 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://polymarket.com/tos'>Terms of Service</a></li>
+            <li><a href='https://XFT.com/tos'>Terms of Service</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to Polymarket&#39;s docs! Here developers can find all the information they need for interacting with Polymarket. This includes documentation on market discovery, resolution, trading etc. Whether you are an academic researcher a market maker or an indy developer, this documentation should provide you what you need to get started. All the code you find linked here and on our GitHub is open source and free to use. If you have any questions please <a href="https://discord.gg/polymarket">join our discord</a> and direct your questions to the #devs channel.</p>
+<p>Welcome to XFT&#39;s docs! Here developers can find all the information they need for interacting with XFT. This includes documentation on market discovery, resolution, trading etc. Whether you are an academic researcher a market maker or an indy developer, this documentation should provide you what you need to get started. All the code you find linked here and on our GitHub is open source and free to use. If you have any questions please <a href="https://discord.gg/XFT">join our discord</a> and direct your questions to the #devs channel.</p>
 <h1 id='clob-api'>CLOB API</h1><h2 id='introduction-2'>Introduction</h2>
-<p>Welcome to the Polymarket Order Book API! In this documentation you will find overviews, explanations, examples and annotations that aim to make interacting with the order book a breeze. In this section we will provide a general overview of the Polymarket Order Book and the purpose of the API before diving deep into the API and clients in following sections.</p>
+<p>Welcome to the XFT Order Book API! In this documentation you will find overviews, explanations, examples and annotations that aim to make interacting with the order book a breeze. In this section we will provide a general overview of the XFT Order Book and the purpose of the API before diving deep into the API and clients in following sections.</p>
 <h3 id='system'>System</h3>
-<p>Polymarket&#39;s Order Book, also referred to as the &quot;CLOB&quot; (Central Limit Order Book) or &quot;BLOB&quot; (Binary Limit Order Book), is hybrid-decentralized wherein there is an operator that provides off-chain matching/ordering services while settlement/execution happens on-chain, non-custodially according to instructions provided by users in the form of signed order messages. This decentralized exchange model provides users with a powerful, non-custodial exchange experience.</p>
+<p>XFT&#39;s Order Book, also referred to as the &quot;CLOB&quot; (Central Limit Order Book) or &quot;BLOB&quot; (Binary Limit Order Book), is hybrid-decentralized wherein there is an operator that provides off-chain matching/ordering services while settlement/execution happens on-chain, non-custodially according to instructions provided by users in the form of signed order messages. This decentralized exchange model provides users with a powerful, non-custodial exchange experience.</p>
 
 <p>Underlying the exchange system is a custom Exchange contract that facilitates atomic swaps (settlement) between binary Outcome Tokens (both CTF ERC1155 assets and ERC20 PToken assets) and a collateral asset (ERC20) according to signed limit orders. The Exchange contract is purpose built for binary markets (instruments that allow collateral to be split into positions and conversely positions to be merged into collateral with the two positions ultimately being settled to a price equal to 1). This allows &quot;unification&quot; of order books such that orders for a position and its complement can be matched. Explicitly, the Exchange allows for matching operations that include a mint/merge operation which allows orders for complementary outcome tokens to be crossed.</p>
 
 <p>Orders are represented as signed typed structured data (EIP712). When orders are matched, one side is considered the maker and the other side is considered the taker. The relationship is always either one to one or many to one (maker to taker) and any price improvement is captured by the taker. The Operator is responsible for matching, ordering, and submitting matched trades to the underlying blockchain network for execution. As such, order placement and canellation can happen immediately off-chain while only the settlement action must occur on-chain.</p>
 <h3 id='api'>API</h3>
-<p>The Polymarket Order Book API is a set of endpoints that allow market makers, traders, and other Polymarket users to programmatically create and manage orders for markets via access to the API provided by the operator.</p>
+<p>The XFT Order Book API is a set of endpoints that allow market makers, traders, and other XFT users to programmatically create and manage orders for markets via access to the API provided by the operator.</p>
 
 <p>Orders for any amount can be created and listed, or fetched and read from the order book for a given market. The API also provides data on all available markets, market prices, and order history through REST and WSS endpoints.</p>
 <h3 id='security'>Security</h3>
-<p>Polymarket&#39;s Exchange contract has been audited by Chainsecurity you can find the audit report <a href="https://github.com/Polymarket/ctf-exchange/blob/main/audit/ChainSecurity_Polymarket_Exchange_audit.pdf">here</a>.</p>
+<p>XFT&#39;s Exchange contract has been audited by Chainsecurity you can find the audit report <a href="https://github.com/XFT/ctf-exchange/blob/main/audit/ChainSecurity_XFT_Exchange_audit.pdf">here</a>.</p>
 
 <p>The operator has no special privileges outside of ordering, this means that the only actions you must trust them with is enforcing correct ordering, not censoring and removing cancellations (orders can also be cancelled on-chain if operator is not trusted). If the operator is not doing any of these activities fairly a user can simply stop interacting with the operator. The operator is never able to set prices for users, or execute any trade on the user&#39;s behalf outside of the signed limit orders the user creates.</p>
 <h3 id='fees'>Fees</h3><h4 id='schedule'>Schedule</h4>
@@ -801,8 +801,8 @@ feeBase =  baseRate * \min(price, 1-price) * \frac{size}{price}
 $$</p>
 <h3 id='additional-resources'>Additional Resources</h3>
 <ul>
-<li><a href="https://github.com/Polymarket/ctf-exchange/tree/main/src">Exchange contract source code</a></li>
-<li><a href="https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md">Exchange contract documentation</a></li>
+<li><a href="https://github.com/XFT/ctf-exchange/tree/main/src">Exchange contract source code</a></li>
+<li><a href="https://github.com/XFT/ctf-exchange/blob/main/docs/Overview.md">Exchange contract documentation</a></li>
 </ul>
 <h2 id='deployments'>Deployments</h2>
 <p>The Exchange contract is deployed at the following addresses:</p>
@@ -823,21 +823,21 @@ $$</p>
 </tr>
 </tbody></table>
 <h2 id='status'>Status</h2>
-<p><a href="https://status-clob.polymarket.com/">https://status-clob.polymarket.com/</a></p>
+<p><a href="https://status-clob.XFT.com/">https://status-clob.XFT.com/</a></p>
 <h2 id='clients'>Clients</h2>
 <blockquote>
 <p>Installation</p>
 </blockquote>
-<div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="nx">npm</span> <span class="nx">i</span> <span class="o">-</span><span class="nx">s</span> <span class="p">@</span><span class="nd">polymarket</span><span class="sr">/clob-clien</span><span class="err">t
+<div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="nx">npm</span> <span class="nx">i</span> <span class="o">-</span><span class="nx">s</span> <span class="p">@</span><span class="nd">XFT</span><span class="sr">/clob-clien</span><span class="err">t
 </span>
-<span class="nx">yarn</span> <span class="nx">add</span> <span class="p">@</span><span class="nd">polymarket</span><span class="sr">/clob-clien</span><span class="err">t
+<span class="nx">yarn</span> <span class="nx">add</span> <span class="p">@</span><span class="nd">XFT</span><span class="sr">/clob-clien</span><span class="err">t
 </span></code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="n">pip</span> <span class="n">install</span> <span class="n">py</span><span class="o">-</span><span class="n">clob</span><span class="o">-</span><span class="n">client</span>
 </code></pre></div>
-<p>Polymarket has implemented reference clients that allow programmatic use of the API below:</p>
+<p>XFT has implemented reference clients that allow programmatic use of the API below:</p>
 
 <ul>
-<li><a href="https://github.com/Polymarket/clob-client">clob-client</a> (Typescript)</li>
-<li><a href="https://github.com/Polymarket/py-clob-client">py-clob-client</a> (Python)</li>
+<li><a href="https://github.com/XFT/clob-client">clob-client</a> (Typescript)</li>
+<li><a href="https://github.com/XFT/py-clob-client">py-clob-client</a> (Python)</li>
 </ul>
 
 <blockquote>
@@ -852,13 +852,13 @@ $$</p>
 <span class="c1">### Initialization of a client that trades directly from an EOA
 </span><span class="n">client</span> <span class="o">=</span> <span class="n">ClobClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">chain_id</span><span class="o">=</span><span class="n">chain_id</span><span class="p">)</span>
 
-<span class="c1">### Initialization of a client using a Polymarket Proxy associated with an Email/Magic account
-</span><span class="n">client</span> <span class="o">=</span> <span class="n">ClobClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">chain_id</span><span class="o">=</span><span class="n">chain_id</span><span class="p">,</span> <span class="n">signature_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">funder</span><span class="o">=</span><span class="n">POLYMARKET_PROXY_ADDRESS</span><span class="p">)</span>
+<span class="c1">### Initialization of a client using a XFT Proxy associated with an Email/Magic account
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">ClobClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">chain_id</span><span class="o">=</span><span class="n">chain_id</span><span class="p">,</span> <span class="n">signature_type</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">funder</span><span class="o">=</span><span class="n">XFT_PROXY_ADDRESS</span><span class="p">)</span>
 
-<span class="c1">### Initialization of a client using a Polymarket Proxy associated with a Browser Wallet(Metamask, Coinbase Wallet, etc)
-</span><span class="n">client</span> <span class="o">=</span> <span class="n">ClobClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">chain_id</span><span class="o">=</span><span class="n">chain_id</span><span class="p">,</span> <span class="n">signature_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">funder</span><span class="o">=</span><span class="n">POLYMARKET_PROXY_ADDRESS</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ClobClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">polymarket/clob-client</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">SignatureType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@polymarket/order-utils</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">### Initialization of a client using a XFT Proxy associated with a Browser Wallet(Metamask, Coinbase Wallet, etc)
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">ClobClient</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">chain_id</span><span class="o">=</span><span class="n">chain_id</span><span class="p">,</span> <span class="n">signature_type</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">funder</span><span class="o">=</span><span class="n">XFT_PROXY_ADDRESS</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ClobClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">XFT/clob-client</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">SignatureType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@XFT/order-utils</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="c1">// Initialization of a client that trades directly from an EOA</span>
 <span class="kd">const</span> <span class="nx">clobClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClobClient</span><span class="p">(</span>
@@ -867,43 +867,43 @@ $$</p>
   <span class="nx">wallet</span> <span class="k">as</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span> <span class="o">|</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcSigner</span>
 <span class="p">);</span>
 
-<span class="c1">// Initialization of a client using a Polymarket Proxy associated with an Email/Magic account</span>
+<span class="c1">// Initialization of a client using a XFT Proxy associated with an Email/Magic account</span>
 <span class="kd">const</span> <span class="nx">clobClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClobClient</span><span class="p">(</span>
   <span class="nx">host</span> <span class="k">as</span> <span class="kr">string</span><span class="p">,</span>
   <span class="p">(</span><span class="k">await</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">getChainId</span><span class="p">())</span> <span class="k">as</span> <span class="kr">number</span><span class="p">,</span>
   <span class="nx">wallet</span> <span class="k">as</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span> <span class="o">|</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcSigner</span><span class="p">,</span>
   <span class="kc">undefined</span><span class="p">,</span> <span class="c1">// creds</span>
   <span class="nx">SignatureType</span><span class="p">.</span><span class="nx">POLY_PROXY</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">YOUR_POLYMARKET_PROXY_ADDRESS</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">YOUR_XFT_PROXY_ADDRESS</span><span class="dl">"</span>
 <span class="p">);</span>
 
-<span class="c1">// Initialization of a client using a Polymarket Proxy Wallet associated with a Browser Wallet(Metamask, Coinbase Wallet)</span>
+<span class="c1">// Initialization of a client using a XFT Proxy Wallet associated with a Browser Wallet(Metamask, Coinbase Wallet)</span>
 <span class="kd">const</span> <span class="nx">clobClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClobClient</span><span class="p">(</span>
   <span class="nx">host</span> <span class="k">as</span> <span class="kr">string</span><span class="p">,</span>
   <span class="p">(</span><span class="k">await</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">getChainId</span><span class="p">())</span> <span class="k">as</span> <span class="kr">number</span><span class="p">,</span>
   <span class="nx">wallet</span> <span class="k">as</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span> <span class="o">|</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcSigner</span><span class="p">,</span>
   <span class="kc">undefined</span><span class="p">,</span> <span class="c1">// creds</span>
   <span class="nx">SignatureType</span><span class="p">.</span><span class="nx">POLY_GNOSIS_SAFE</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">YOUR_POLYMARKET_PROXY_ADDRESS</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">YOUR_XFT_PROXY_ADDRESS</span><span class="dl">"</span>
 <span class="p">);</span>
 </code></pre></div><h3 id='order-utils'>Order Utils</h3>
-<p>Polymarket has implemented utility libraries to programmatically sign and generate orders:</p>
+<p>XFT has implemented utility libraries to programmatically sign and generate orders:</p>
 
 <ul>
-<li><a href="https://github.com/Polymarket/clob-order-utils">clob-order-utils</a> (Typescript)</li>
-<li><a href="https://github.com/Polymarket/python-order-utils">python-order-utils</a> (Python)</li>
-<li><a href="https://github.com/Polymarket/go-order-utils">go-order-utils</a> (Golang)</li>
+<li><a href="https://github.com/XFT/clob-order-utils">clob-order-utils</a> (Typescript)</li>
+<li><a href="https://github.com/XFT/python-order-utils">python-order-utils</a> (Python)</li>
+<li><a href="https://github.com/XFT/go-order-utils">go-order-utils</a> (Golang)</li>
 </ul>
 <h2 id='endpoints'>Endpoints</h2><h3 id='rest'>REST</h3>
 <p>Used for all CLOB REST endpoints, denoted <code>{clob-endpoint}</code>.</p>
 
-<p><strong><a href="https://clob.polymarket.com/">https://clob.polymarket.com/</a></strong></p>
+<p><strong><a href="https://clob.XFT.com/">https://clob.XFT.com/</a></strong></p>
 <h3 id='websocket'>Websocket</h3>
 <p>Used for all CLOB WSS endpoints, denoted <code>{wss-channel}</code>.</p>
 
-<p><strong><a href="wss://ws-subscriptions-clob.polymarket.com/ws/">wss://ws-subscriptions-clob.polymarket.com/ws/</a></strong></p>
+<p><strong><a href="wss://ws-subscriptions-clob.XFT.com/ws/">wss://ws-subscriptions-clob.XFT.com/ws/</a></strong></p>
 <h2 id='authentication'>Authentication</h2>
-<p>There are two levels of authentication to be considered when using Polymarket&#39;s CLOB. All signing can be handled directly by the client libraries.</p>
+<p>There are two levels of authentication to be considered when using XFT&#39;s CLOB. All signing can be handled directly by the client libraries.</p>
 <h3 id='l1-private-key-authentication'>L1: Private Key Authentication</h3>
 <p>The highest level of authentication is via an account&#39;s Polygon private key. The private key remains in control of a user&#39;s funds and as such all trading is non-custodial. The operator <em>never</em> has control over users&#39; funds.</p>
 
@@ -966,9 +966,9 @@ $$</p>
 <span class="p">};</span>
 <span class="kd">const</span> <span class="nx">sig</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">signer</span><span class="p">.</span><span class="nx">_signTypedData</span><span class="p">(</span><span class="nx">domain</span><span class="p">,</span> <span class="nx">types</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
 </code></pre></div>
-<p>Implementations exist in the <a href="https://github.com/Polymarket/clob-client/blob/main/src/signing/eip712.ts">Typescript</a> and <a href="https://github.com/Polymarket/py-clob-client/blob/main/py_clob_client/signing/eip712.py">Python</a> clients</p>
+<p>Implementations exist in the <a href="https://github.com/XFT/clob-client/blob/main/src/signing/eip712.ts">Typescript</a> and <a href="https://github.com/XFT/py-clob-client/blob/main/py_clob_client/signing/eip712.py">Python</a> clients</p>
 <h3 id='l2-api-key-authentication'>L2: API Key Authentication</h3>
-<p>The next level of authentication consists of the API key, secret and passphrase which are used solely to authenticate API requests made to Polymarket&#39;s CLOB. This includes operations such as posting/canceling orders or retrieving an account&#39;s orders and fills.</p>
+<p>The next level of authentication consists of the API key, secret and passphrase which are used solely to authenticate API requests made to XFT&#39;s CLOB. This includes operations such as posting/canceling orders or retrieving an account&#39;s orders and fills.</p>
 
 <p>When a user on-boards via <code>POST</code> <code>/auth/api-key</code>, the server will use the signature as a seed to deterministically generate credentials. An API credential includes three fields:</p>
 
@@ -1005,12 +1005,12 @@ $$</p>
 <tr>
 <td style="text-align: center">POLY_API_KEY</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">Polymarket API key</td>
+<td style="text-align: left">XFT API key</td>
 </tr>
 <tr>
 <td style="text-align: center">POLY_PASSPHRASE</td>
 <td style="text-align: center">yes</td>
-<td style="text-align: left">Polymarket API key passphrase</td>
+<td style="text-align: left">XFT API key passphrase</td>
 </tr>
 </tbody></table>
 <h3 id='create-api-key'>Create API Key</h3>
@@ -1086,11 +1086,11 @@ This endpoint required a L2 Header.
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"OK"</span><span class="w">
 </span></code></pre></div><h2 id='orders'>Orders</h2><h3 id='overview-2'>Overview</h3>
-<p>All orders are expressed as limit orders (can be marketable). The underlying order primitive must be in the form expected and executable by the on-chain binary limit order protocol contract. Preparing such an order is quite involved (structuring, hashing, signing), thus Polymarket suggests using the open source typescript, python and golang libraries.</p>
+<p>All orders are expressed as limit orders (can be marketable). The underlying order primitive must be in the form expected and executable by the on-chain binary limit order protocol contract. Preparing such an order is quite involved (structuring, hashing, signing), thus XFT suggests using the open source typescript, python and golang libraries.</p>
 <h3 id='allowances'>Allowances</h3>
 <p>To place an order, allowances must be set by the funder address for the specified <code>maker</code> asset for the Exchange contract. When buying, this means the funder must have set a USDC allowance greater than or equal to the spending amount. When selling, the funder must have set an allowance for the conditional token tht is greater than or equal to the selling amount. This allows the Exchange contract to execute settlement according to the signed order instructions created by a user and matched by the operator.</p>
 <h3 id='signature-types'>Signature Types</h3>
-<p>Polymarket&#39;s CLOB supports 3 signature types. Orders must identify what signature type they use. The available typescript and python clients abstract the complexity of signing and preparing orders with the following signature types by allowing a funder address and signer type to be specified on initialization. The supported signature types are:</p>
+<p>XFT&#39;s CLOB supports 3 signature types. Orders must identify what signature type they use. The available typescript and python clients abstract the complexity of signing and preparing orders with the following signature types by allowing a funder address and signer type to be specified on initialization. The supported signature types are:</p>
 
 <table><thead>
 <tr>
@@ -1107,12 +1107,12 @@ This endpoint required a L2 Header.
 <tr>
 <td style="text-align: center">POLY_PROXY</td>
 <td style="text-align: center">1</td>
-<td style="text-align: left">EIP712 signatures signed by a signer associated with funding Polymarket proxy wallet</td>
+<td style="text-align: left">EIP712 signatures signed by a signer associated with funding XFT proxy wallet</td>
 </tr>
 <tr>
 <td style="text-align: center">POLY_GNOSIS_SAFE</td>
 <td style="text-align: center">2</td>
-<td style="text-align: left">EIP712 signatures signed by a signer associated with funding Polymarket gnosis safe wallet</td>
+<td style="text-align: left">EIP712 signatures signed by a signer associated with funding XFT gnosis safe wallet</td>
 </tr>
 </tbody></table>
 <h3 id='validity-checks'>Validity Checks</h3>
@@ -1128,12 +1128,12 @@ $$</p>
 This endpoint required a L2 Header.
 </aside>
 
-<p>Create and place an order using the Polymarket CLOB API clients. All orders are represented as &quot;limit&quot; orders, but &quot;market&quot; orders are enabled by allowing marketable limit orders, which are executed on input at the best price available. Thus to place a market order, simply ensure your price is marketable against current resting limit orders.</p>
+<p>Create and place an order using the XFT CLOB API clients. All orders are represented as &quot;limit&quot; orders, but &quot;market&quot; orders are enabled by allowing marketable limit orders, which are executed on input at the best price available. Thus to place a market order, simply ensure your price is marketable against current resting limit orders.</p>
 <h4 id='http-request-5'>HTTP Request</h4>
 <p><code>POST {clob-endpoint}/order</code></p>
 <div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="c1">// GTC Order example</span>
 <span class="c1">//</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@polymarket/clob-client</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@XFT/clob-client</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Create a buy order for 100 YES for 0.50c</span>
@@ -1159,7 +1159,7 @@ This endpoint required a L2 Header.
 <span class="nx">main</span><span class="p">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="c1">// GTD Order example</span>
 <span class="c1">//</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@polymarket/clob-client</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@XFT/clob-client</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Create a buy order for 100 YES for 0.50c that expires in 1 minute</span>
@@ -1191,7 +1191,7 @@ This endpoint required a L2 Header.
 <span class="nx">main</span><span class="p">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="c1">// FOK Order example</span>
 <span class="c1">//</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@polymarket/clob-client</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Side</span><span class="p">,</span> <span class="nx">OrderType</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@XFT/clob-client</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Create a buy order for 100 YES for 0.50c that expires in 1 minute</span>
@@ -2056,7 +2056,7 @@ This endpoint required a L2 Header.
 </tr>
 </tbody></table>
 <h2 id='trades'>Trades</h2><h3 id='overview-3'>Overview</h3>
-<p>All historical trades can be fetched via the Polymarket CLOB REST API. A trade is initiated by a &quot;taker&quot; who creates a marketable limit order. This limit order can be matched against one or more resting limit orders on the associated book. A trade can be in various states as described below. Note in some cases (due to gas limitations) the execution of a &quot;trade&quot; must be broken into multiple transactions in which case separate trade entities will be returned. To make these trade entires associable, there is a <code>bucket_index</code> field, a <code>market_order</code> field and a <code>match_time</code> field. Trades that have been broken into multiple trade objects can be reconciled by combining trade objects with the same <code>market_order</code>, <code>match_time</code> and incrementing <code>bucket_index</code>s into a top level &quot;trade&quot; client side.</p>
+<p>All historical trades can be fetched via the XFT CLOB REST API. A trade is initiated by a &quot;taker&quot; who creates a marketable limit order. This limit order can be matched against one or more resting limit orders on the associated book. A trade can be in various states as described below. Note in some cases (due to gas limitations) the execution of a &quot;trade&quot; must be broken into multiple transactions in which case separate trade entities will be returned. To make these trade entires associable, there is a <code>bucket_index</code> field, a <code>market_order</code> field and a <code>match_time</code> field. Trades that have been broken into multiple trade objects can be reconciled by combining trade objects with the same <code>market_order</code>, <code>match_time</code> and incrementing <code>bucket_index</code>s into a top level &quot;trade&quot; client side.</p>
 <h3 id='statuses'>Statuses</h3>
 <table><thead>
 <tr>
@@ -3339,7 +3339,7 @@ This endpoint required a L2 Header.
   </span><span class="nl">"71321045679252212594626385532706912750332728571942532289631379312455583992563"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='websocket-api'>Websocket API</h2><h3 id='overview-4'>Overview</h3>
-<p>The Polymarket CLOP API provides websocket (wss) channels through which clients can get pushed updates. These endpoints allow clients to maintain almost real-time views of their orders, their trades and markets in general. There are two available channels <code>user</code> and <code>market</code>.</p>
+<p>The XFT CLOP API provides websocket (wss) channels through which clients can get pushed updates. These endpoints allow clients to maintain almost real-time views of their orders, their trades and markets in general. There are two available channels <code>user</code> and <code>market</code>.</p>
 <h3 id='subscription'>Subscription</h3>
 <p>To subscribe send a message including the following authenticating and intent information upon opening the connection.</p>
 
@@ -3913,9 +3913,9 @@ Only connections to `user` channel require authentication.
 </tr>
 </tbody></table>
 <h1 id='gamma-markets-api'>Gamma Markets API</h1><h2 id='overview-5'>Overview</h2>
-<p>All market data necessary for market resolution is available on-chain (ie <code>ancillaryData</code> in UMA OO request) but Polymarket also provides a hosted service, Gamma, that indexes this data and provides additional market metadata (ie categorization, indexed volume, etc). This service is made available through a REST API. For public users, this resource is read only and can be used to fetch useful information about markets for things like non-profit research projects, alternative trading interfaces, automated trading systems etc.</p>
+<p>All market data necessary for market resolution is available on-chain (ie <code>ancillaryData</code> in UMA OO request) but XFT also provides a hosted service, Gamma, that indexes this data and provides additional market metadata (ie categorization, indexed volume, etc). This service is made available through a REST API. For public users, this resource is read only and can be used to fetch useful information about markets for things like non-profit research projects, alternative trading interfaces, automated trading systems etc.</p>
 <h2 id='endpoint'>Endpoint</h2>
-<p><a href="https://gamma-api.polymarket.com"><code>https://gamma-api.polymarket.com</code></a></p>
+<p><a href="https://gamma-api.XFT.com"><code>https://gamma-api.XFT.com</code></a></p>
 <h2 id='market-organization'>Market Organization</h2>
 <p>Gamma provides some organizational models. These include <strong>events</strong>, and <strong>markets</strong>. The most fundamental element is always <strong>markets</strong> and the other models simply provide additional organization.</p>
 <h3 id='detail'>Detail</h3>
@@ -4280,24 +4280,24 @@ The tags filters are mutually exclusive with priority `tag` > `tag_id` > `tag_sl
 <p><code>GET {gamma-endpoint}/events/{id}</code></p>
 <h4 id='example-query-2'>Example Query</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="err">/events/</span><span class="mi">901289</span><span class="w">
 </span></code></pre></div><h1 id='subgraph'>Subgraph</h1><h2 id='overview-6'>Overview</h2>
-<p>Polymarket has written and open sourced a subgraph that provides, via a GraphQL query interface, useful aggregate calculations and event indexing for things like trade, volume, user position, market and liquidity data. The subgraph updates in real time as blocks are mined, and is reorg-aware. The subgraph underlies the primary Polymarket.com interface, providing positional data, activity history and more. The subgraph can be hosted by anyone but is also hosted and made publicly available by a 3rd party provider, <a href="https://goldsky.com/">Goldsky</a>.  </p>
+<p>XFT has written and open sourced a subgraph that provides, via a GraphQL query interface, useful aggregate calculations and event indexing for things like trade, volume, user position, market and liquidity data. The subgraph updates in real time as blocks are mined, and is reorg-aware. The subgraph underlies the primary XFT.com interface, providing positional data, activity history and more. The subgraph can be hosted by anyone but is also hosted and made publicly available by a 3rd party provider, <a href="https://goldsky.com/">Goldsky</a>.  </p>
 <h2 id='source'>Source</h2>
-<p>The Polymaket subgraph is entirely open source and can be found on the Polymarket Github.</p>
+<p>The Polymaket subgraph is entirely open source and can be found on the XFT Github.</p>
 
-<p><a href="https://github.com/Polymarket/polymarket-subgraph"><strong><code>Polymarket/polymarket-subgraph</code></strong></a></p>
+<p><a href="https://github.com/XFT/XFT-subgraph"><strong><code>XFT/XFT-subgraph</code></strong></a></p>
 
-<p><em>Note: The available models/schemas can be found in the <a href="https://github.com/Polymarket/polymarket-subgraph/blob/master/schema.graphql"><code>schema.graphql</code></a> file.</em></p>
+<p><em>Note: The available models/schemas can be found in the <a href="https://github.com/XFT/XFT-subgraph/blob/master/schema.graphql"><code>schema.graphql</code></a> file.</em></p>
 <h2 id='hosted-version'>Hosted Version</h2>
-<p>The hosted version and accompany GraphQL playground can be found <a href="https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/polymarket-orderbook-resync/prod/gn">here</a></p>
+<p>The hosted version and accompany GraphQL playground can be found <a href="https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/XFT-orderbook-resync/prod/gn">here</a></p>
 <h1 id='resolution'>Resolution</h1>
-<p>All market resolution is completely decentralized. A majority of markets on Polymarket are resolved via UMA&#39;s optimistic oracle, the rest (some price markets) are resoled via Pyth.</p>
+<p>All market resolution is completely decentralized. A majority of markets on XFT are resolved via UMA&#39;s optimistic oracle, the rest (some price markets) are resoled via Pyth.</p>
 <h2 id='uma'>UMA</h2><h3 id='overview-7'>Overview</h3>
-<p>Polymarket leverages UMA&#39;s Optimistic Oracle (OO) to resolve arbitrary questions, permissionlessly. From <a href="https://docs.uma.xyz/protocol-overview/how-does-umas-oracle-work">UMA&#39;s docs</a>:</p>
+<p>XFT leverages UMA&#39;s Optimistic Oracle (OO) to resolve arbitrary questions, permissionlessly. From <a href="https://docs.uma.xyz/protocol-overview/how-does-umas-oracle-work">UMA&#39;s docs</a>:</p>
 
 <p><em>&quot;UMA&#39;s Optimistic Oracle allows contracts to quickly request and receive data information. The Optimistic Oracle acts as a generalized escalation game between contracts that initiate a price request and UMA&#39;s dispute resolution system known as the Data Verification Mechanism (DVM). Prices proposed by the Optimistic Oracle will not be sent to the DVM unless it is disputed.
 If a dispute is raised, a request is sent to the DVM. All contracts built on UMA use the DVM as a backstop to resolve disputes. Disputes sent to the DVM will be resolved within a few days - after UMA tokenholders vote on what the correct outcome should have been.&quot;</em></p>
 
-<p>To allow CTF markets to be resolved via the OO, Polymarket developed a custom adapter contract called <code>UmaCtfAdapter</code> that provides a way for the two contract systems to interface. </p>
+<p>To allow CTF markets to be resolved via the OO, XFT developed a custom adapter contract called <code>UmaCtfAdapter</code> that provides a way for the two contract systems to interface. </p>
 <h4 id='clarifications'>Clarifications</h4>
 <p>Recent versions (v2+) of the <code>UmaCtfAdapter</code> also include a bulletin board feature that allows market creators to issue &quot;clarifications&quot;. Questions that allow updates will include the sentence in their ancillary data:</p>
 
@@ -4376,17 +4376,17 @@ If a dispute is raised, a request is sent to the DVM. All contracts built on UMA
 </tbody></table>
 <h3 id='additional-resources-2'>Additional Resources</h3>
 <ul>
-<li><a href="https://github.com/Polymarket/uma-ctf-adapter/tree/main/audit/Polymarket_UMA_Optimistic_Oracle_Adapter_Audit.pdf">Audit</a></li>
-<li><a href="https://github.com/Polymarket/uma-ctf-adapter">Source Code</a></li>
+<li><a href="https://github.com/XFT/uma-ctf-adapter/tree/main/audit/XFT_UMA_Optimistic_Oracle_Adapter_Audit.pdf">Audit</a></li>
+<li><a href="https://github.com/XFT/uma-ctf-adapter">Source Code</a></li>
 <li><a href="https://docs.uma.xyz/">UMA Documentation</a></li>
 <li><a href="https://oracle.uma.xyz/">UMA Oracle Portal</a></li>
 </ul>
 <h2 id='pyth'>Pyth</h2>
 <p>Coming soon</p>
 <h1 id='rewards'>Rewards</h1>
-<p>Polymarket provides incentives aimed at catalyzing the supply and demand side of the marketplace. Specifically there is a public liquidity rewards program as well as one-ff public pnl/volume competitions.</p>
+<p>XFT provides incentives aimed at catalyzing the supply and demand side of the marketplace. Specifically there is a public liquidity rewards program as well as one-ff public pnl/volume competitions.</p>
 <h2 id='liquidity-rewards-program'>Liquidity Rewards Program</h2><h3 id='overview-8'>Overview</h3>
-<p>By posting resting limit orders, liquidity providers (makers) are automatically eligible for Polymarket&#39;s incentive program. The overall goal of this program is to <strong>catalyze a healthy, liquid marketplace. We can further define this as creating incentives that:</strong></p>
+<p>By posting resting limit orders, liquidity providers (makers) are automatically eligible for XFT&#39;s incentive program. The overall goal of this program is to <strong>catalyze a healthy, liquid marketplace. We can further define this as creating incentives that:</strong></p>
 
 <ul>
 <li>Catalyze liquidity across all markets</li>
@@ -4398,7 +4398,7 @@ If a dispute is raised, a request is sent to the DVM. All contracts built on UMA
 
 <p>This program is heavily inspired by dYdX&#39;s liquidity provider rewards which you can read more about <a href="https://docs.dydx.community/dydx-governance/rewards/liquidity-provider-rewards">here</a>. In fact, the incentive methodology is essentially a copy of dYdX’s successful methodology but with some adjustments including specific adaptations for binary contract markets with distinct books, no staking mechanic a slightly modified order utility-relative to depth function and reward amounts isolated per market. Rewards are distributed directly to maker&#39;s addresses daily at midnight UTC.</p>
 <h3 id='methodology'>Methodology</h3>
-<p>Polymarket liquidity providers will be rewarded based on a formula that rewards participation in markets (complementary consideration), boosts two-sided depth (single-sided orders still score), and spread (vs. mid-market, adjusted for the size cutoff*). Each market will configure a max spread and min size cutoff within which orders are considered. The amount of rewards earned is determined by the relative share of each participant’s $Q_{epoch}$ in each market multiplied by the rewards available for that market.</p>
+<p>XFT liquidity providers will be rewarded based on a formula that rewards participation in markets (complementary consideration), boosts two-sided depth (single-sided orders still score), and spread (vs. mid-market, adjusted for the size cutoff*). Each market will configure a max spread and min size cutoff within which orders are considered. The amount of rewards earned is determined by the relative share of each participant’s $Q_{epoch}$ in each market multiplied by the rewards available for that market.</p>
 
 <table><thead>
 <tr>
@@ -4546,7 +4546,7 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 <h2 id='leaderboard-competitions'>Leaderboard Competitions</h2>
 <p>coming soon</p>
 <h1 id='conditional-tokens-framework'>Conditional Tokens Framework</h1><h2 id='overview-9'>Overview</h2>
-<p>All outcomes on Polymarket are tokenized on the Polygon network. Specifically, Polymarket outcome shares are binary outcomes (ie “YES” and “NO”) represented using <a href="https://github.com/gnosis/conditional-tokens-contracts">Gnosis’ Conditional Token Framework (CTF)</a>. They are distinct ERC1155 tokens related to a parent condition and backed by some collateral. More technically, the binary outcome tokens are referred to as “positionIds” in <a href="https://docs.gnosis.io/conditionaltokens/docs/devguide01/">Gnosis’s documentation</a>. “PositionIds” are derived from a collateral token and distinct “collectionIds”. “CollectionIds” are derived from a “parentCollectionId”, (always bytes32(0) in our case) a “conditionId”, and a unique “indexSet”. The “indexSet” is a 256 bit array denoting which outcome slots are in an outcome collection; it must be a nonempty proper subset of a condition’s outcome slots. In the binary case, which we are interested in, there are two “indexSets”, one for the first outcome and one for the second. The first outcome’s “indexSet” is 0b01 == 1 and the second’s is 0b10 == 2. The parent “conditionId” (shared by both “collectionIds” and therefore “positionIds”) is derived from a “questionId” (a hash of the UMA ancillary data), an “oracle” address (the UMA adapter V2) and an “outcomeSlotCount” (always 2 in the binary case). The steps for calculating the ERC1155 token ids (positionIds) is as follows:</p>
+<p>All outcomes on XFT are tokenized on the Polygon network. Specifically, XFT outcome shares are binary outcomes (ie “YES” and “NO”) represented using <a href="https://github.com/gnosis/conditional-tokens-contracts">Gnosis’ Conditional Token Framework (CTF)</a>. They are distinct ERC1155 tokens related to a parent condition and backed by some collateral. More technically, the binary outcome tokens are referred to as “positionIds” in <a href="https://docs.gnosis.io/conditionaltokens/docs/devguide01/">Gnosis’s documentation</a>. “PositionIds” are derived from a collateral token and distinct “collectionIds”. “CollectionIds” are derived from a “parentCollectionId”, (always bytes32(0) in our case) a “conditionId”, and a unique “indexSet”. The “indexSet” is a 256 bit array denoting which outcome slots are in an outcome collection; it must be a nonempty proper subset of a condition’s outcome slots. In the binary case, which we are interested in, there are two “indexSets”, one for the first outcome and one for the second. The first outcome’s “indexSet” is 0b01 == 1 and the second’s is 0b10 == 2. The parent “conditionId” (shared by both “collectionIds” and therefore “positionIds”) is derived from a “questionId” (a hash of the UMA ancillary data), an “oracle” address (the UMA adapter V2) and an “outcomeSlotCount” (always 2 in the binary case). The steps for calculating the ERC1155 token ids (positionIds) is as follows:</p>
 
 <ol>
 <li>Get the <code>conditionId</code>
@@ -4604,9 +4604,9 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 
 <ul>
 <li><code>collateralToken</code>: IERC20 - The address of the positions&#39; backing collateral token.</li>
-<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being split and the split target positions. Null in Polymarket case. </li>
+<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being split and the split target positions. Null in XFT case. </li>
 <li><code>conditionId</code>: bytes32 - The ID of the condition to split on.</li>
-<li><code>partition</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the Polymarket case <a href="ie%200x01,%200x10">1,2</a>.</li>
+<li><code>partition</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the XFT case <a href="ie%200x01,%200x10">1,2</a>.</li>
 <li><code>amount</code> - The amount of collateral or stake to split. Also the number of full sets to receive. </li>
 </ul>
 <h2 id='merge'>Merge</h2>
@@ -4614,9 +4614,9 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 
 <ul>
 <li><code>collateralToken</code>: IERC20 - The address of the positions&#39; backing collateral token.</li>
-<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being merged and the merge target positions. Null in Polymarket case. </li>
+<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being merged and the merge target positions. Null in XFT case. </li>
 <li><code>conditionId</code>: bytes32 - The ID of the condition to merge on.</li>
-<li><code>partition</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the Polymarket case <a href="ie%200x01,%200x10">1,2</a>.</li>
+<li><code>partition</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the XFT case <a href="ie%200x01,%200x10">1,2</a>.</li>
 <li><code>amount</code> - The number of full sets to merge. Also the amount of collateral to receive. </li>
 </ul>
 <h2 id='redeem'>Redeem</h2>
@@ -4624,9 +4624,9 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 
 <ul>
 <li><code>collateralToken</code>: IERC20 - The address of the positions&#39; backing collateral token.</li>
-<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being redeemed. Null in Polymarket case. </li>
+<li><code>parentCollectionId</code>: bytes32 - The ID of the outcome collections common to the position being redeemed. Null in XFT case. </li>
 <li><code>conditionId</code>: bytes32 - The ID of the condition to redeem.</li>
-<li><code>indexSets</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the Polymarket case <a href="ie%200x01,%200x10">1,2</a>.</li>
+<li><code>indexSets</code>: uint[] - An array of disjoint index sets representing a nontrivial partition of the outcome slots of the given condition. E.g. A|B and C but not A|B and B|C (is not disjoint). Each element&#39;s a number which, together with the condition, represents the outcome collection. E.g. 0b110 is A|B, 0b010 is B, etc. In the XFT case <a href="ie%200x01,%200x10">1,2</a>.</li>
 </ul>
 <h2 id='deployment'>Deployment</h2>
 <p>The CTF contract is deployed (and verified) at the following addresses:</p>
@@ -4710,7 +4710,7 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 <li><a href="https://github.com/gnosis/conditional-tokens-market-makers/blob/master/docs/G0Group-GnosisOmen2020Mar.pdf">Audit</a></li>
 </ul>
 <h1 id='proxy-wallets'>Proxy Wallets</h1><h2 id='overview-11'>Overview</h2>
-<p>When a user first uses Polymarket.com to trade they are prompted to create a wallet. When they do this, a 1 of 1 multisig is deployed to Polygon which is controlled/owned by the accessing EOA (either MetaMask wallet or MagicLink wallet). This proxy wallet is where all the user&#39;s positions (ERC1155) and USDC (ERC20) are held. Using proxy wallets allows Polymarket to provide an improved UX where multi-step transactions can be executed atomically and transactions can be relayed by relayers on the gas station network. If you are a developer looking to programmatically access positions you accumulated via the Polymarket.com interface, you can either continue using the smart contract wallet by executing transactions through it from the owner account, or you can transfer these assets to a new address using the owner account.</p>
+<p>When a user first uses XFT.com to trade they are prompted to create a wallet. When they do this, a 1 of 1 multisig is deployed to Polygon which is controlled/owned by the accessing EOA (either MetaMask wallet or MagicLink wallet). This proxy wallet is where all the user&#39;s positions (ERC1155) and USDC (ERC20) are held. Using proxy wallets allows XFT to provide an improved UX where multi-step transactions can be executed atomically and transactions can be relayed by relayers on the gas station network. If you are a developer looking to programmatically access positions you accumulated via the XFT.com interface, you can either continue using the smart contract wallet by executing transactions through it from the owner account, or you can transfer these assets to a new address using the owner account.</p>
 <h2 id='deployments-3'>Deployments</h2>
 <p>Each user has their own proxy wallet (and thus proxy wallet address) but the factories are available at the following deployed addresses on the <strong>Polygon network</strong>. </p>
 
@@ -4726,11 +4726,11 @@ $$ + S(v, Spread_{m^\prime_1}) \cdot BidSize_{m^\prime_1} + S(v, Spread_{m^\prim
 </tr>
 <tr>
 <td style="text-align: center"><a href="https://polygonscan.com/address/0xaB45c5A4B0c941a2F231C04C3f49182e1A254052"><code>0xaB45c5A4B0c941a2F231C04C3f49182e1A254052</code></a></td>
-<td style="text-align: left"><strong>Polymarket proxy factory</strong> - Polymarket custom proxy contracts are used for all MagicLink users</td>
+<td style="text-align: left"><strong>XFT proxy factory</strong> - XFT custom proxy contracts are used for all MagicLink users</td>
 </tr>
 </tbody></table>
 <h1 id='bug-bounty'>Bug Bounty</h1>
-<p>Polymarket has an active bug bounty program via <a href="https://immunefi.com/bug-bounty/polymarket/">Immunefi</a>. Please direct any/all reports there. </p>
+<p>XFT has an active bug bounty program via <a href="https://immunefi.com/bug-bounty/XFT/">Immunefi</a>. Please direct any/all reports there. </p>
 
       </div>
       <div class="dark-box">
